@@ -1,6 +1,6 @@
 ---
 - name: Update all RHEL boxes
-  hosts: all
+  hosts: rhel
   become: true
 
   tasks:
