@@ -79,7 +79,10 @@ Having job templates (automation building blocks) we create two workflows:
    2. deploy_webserver
    3. deploy_website
 2. A workflow that run the following in that specific oprder:
-3.   
+   1. deploy_servers
+   2. sync inventory TechXchangeNL
+   3. the proviously created workflow
+
 
 
 
