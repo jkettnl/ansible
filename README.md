@@ -66,7 +66,7 @@ For the new HCP Terraform _Actions_ feature we need to configure EDA and thus ED
 
 
 ### Inventories
-Create an inventory called "TechXchangeNL" and add a dynamic inventory source to it named "Terraform". This source needs a special plugin and some configuration to do the magic of syncing the statefile. The plugin is in the provided execution environment and the config that you need to give in the _Source Variables_ are:
+Create an inventory called "TechXchangeNL" and add a dynamic inventory source to it named "Terraform". This source is of type `Terraform State` and needs some configuration to do the magic of syncing the statefile. Use the provided execution environment and the config that you need to give in the `Source Variables` are:
 ```text
 plugin: cloud.terraform.terraform_state
 backend_type: remote
@@ -80,10 +80,10 @@ keyed_groups:
   - prefix: role
     key: tags.Role
 ```
-Also, you need the Terraform Backend Configuration Credential you made as the credential for this source. You can test it by syncing the source manually. Do NOT enable _update on launch_.
+Also, you need the `Terraform Backend Configuration` Credential you made before as the credential for this source. You can test it by syncing the source manually. Do NOT enable _update on launch_.
 
 ### Job Templates
-Now that you have the basics set up (project, credential, inventory), you can define job templates in AAP. As you can see in the repository where this text lives, there are 4 playbooks:
+Now that you have the basics set up (project, credential, inventory), you can define job templates in AAP. As you can see in the repository where this README lives, there are 4 playbooks:
 - deploy_servers.yml This playbook will apply a plan in Hashicorp Terraform Cloud.
 - update_server.yml. This playbook will update RHEL servers
 - deploy_webserver.yml. This playbook will deploy a webserver (apache)
