@@ -1,5 +1,13 @@
-- name: HCP
-  hosts: all
+---
+- name: Playbook using hashicorp.terraform collection
+  hosts: localhost
+  gather_facts: false
   tasks:
-  - name: Apply a terraform plan
-
+    - name: Create a new configuration version
+      hashicorp.terraform.configuration_version:
+        workspace_id: "{{ workspace_id }}"
+        state: present
+        configuration_files_path: "{{ configuration_files }}"
+        poll_interval: 3
+        poll_timeout: 15
+        tf_token: "{{ terraform_cloud_token }}"
