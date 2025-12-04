@@ -1,13 +1,13 @@
----
-- name: Playbook using hashicorp.terraform collection
-  hosts: localhost
-  gather_facts: false
+- name: HCP
+  hosts: all
   tasks:
-    - name: Create a new configuration version
-      hashicorp.terraform.configuration_version:
-        workspace_id: "{{ ws-SzXXVwD2df6XPbjK }}"
-        state: present
-        configuration_files_path: "{{ configuration_files }}"
-        poll_interval: 3
-        poll_timeout: 15
-        tf_token: "{{ terraform_cloud_token }}"
+  - name: Apply a terraform plan
+    hashicorp.terraform.run:
+      workspace: "jkettnl"
+      organization: "TechXchangeNL"
+      run_message: "Deploy new application version"
+      auto_apply: true
+      state: "present"
+      poll_timeout: 1200
+      poll_interval: 5
+      tf_timeout: 6000
